@@ -68,12 +68,12 @@ const Login = () => {
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleButtonClick}
         >
-          {SignInForm ? "Sign In karan" : "Sign Up karan"}
+          {SignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {SignInForm
-            ? "New to CineSense? Sign Up"
-            : "Already Registered? Sign In"}
+            ? "New to CineSense? Sign Up karan"
+            : "Already Registered? Sign In karan"}
         </p>
       </form>
     </div>
