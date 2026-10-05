@@ -200,6 +200,9 @@
   .my-36 {
     margin-block: calc(var(--spacing) * 36);
   }
+  .contents {
+    display: contents;
+  }
   .table {
     display: table;
   }

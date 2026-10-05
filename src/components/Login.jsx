@@ -68,7 +68,7 @@ const Login = () => {
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleButtonClick}
         >
-          {SignInForm ? "Sign In" : "Sign Up"}
+          {SignInForm ? "Sign In karan" : "Sign Up karan"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {SignInForm
