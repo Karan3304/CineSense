@@ -1,22 +1,40 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Logo/cinesense.png";
 import { auth } from "../utils/firebase";
-import { signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error");
       });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // this is the case when user SignIn
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        // case when User Sign Out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    // unsubscribed when componente unmounts
+    return () => unsubscribe();
+  }, []);
 
   const name = user?.displayName || user?.email || "User";
 
