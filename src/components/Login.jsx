@@ -4,12 +4,18 @@ import { checkValidData } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Login = () => {
   const [SignInForm, setSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -39,6 +45,20 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/163971189?v=4",
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName }));
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
           console.log(user);
         })
         .catch((error) => {
@@ -57,6 +77,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          navigate("browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -116,8 +137,8 @@ const Login = () => {
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {SignInForm
-            ? "New to CineSense? Sign Up karan"
-            : "Already Registered? Sign In karan"}
+            ? "New to CineSense? Sign Up "
+            : "Already Registered? Sign In "}
         </p>
       </form>
     </div>
