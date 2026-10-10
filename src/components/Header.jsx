@@ -39,7 +39,7 @@ const Header = () => {
   const name = user?.displayName || user?.email || "User";
 
   return (
-    <div className="absolute inset-x-0 top-0 px-8 py-6 bg-linear-to-b from-black z-10 flex justify-between items-center">
+    <div className="absolute inset-x-0 top-0 px-8 py-6 bg-linear-to-b from-black z-50 flex justify-between items-center">
       <img className="w-44" src={logo} alt="CineSense" />
 
       {user && (
