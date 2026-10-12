@@ -25,7 +25,7 @@ const usePopularMovies = () => {
     //   }),
     // );
 
-    console.log(json.titles);
+    // console.log(json.titles);
     dispatch(addPopularMovies(json.titles));
   };
 

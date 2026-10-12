@@ -14,3 +14,4 @@ const VideoBackground = ({ trailer, backdrop, poster }) => {
 };
 
 export default VideoBackground;
+

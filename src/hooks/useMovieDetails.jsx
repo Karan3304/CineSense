@@ -18,14 +18,14 @@ const useMovieDetails = (movieId) => {
           API_OPTIONS,
         );
         if (!res.ok) {
-          console.error("Details error:", res.status);
+          // console.error("Details error:", res.status);
           return;
         }
         const json = await res.json();
-        console.log("details:", json);
+        // console.log("details:", json);
         dispatch(addMainMovieDetails(json));
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
 
