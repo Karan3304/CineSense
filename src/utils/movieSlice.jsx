@@ -19,3 +19,22 @@ const movieSlice = createSlice({
 export const { addPopularMovies, addMainMovieDetails } = movieSlice.actions;
 
 export default movieSlice.reducer;
+
+
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const movieSlice = createSlice({
+//   name: "movies",
+//   initialState: {
+//     rows: {}, // { newReleases: [...], popular: [...], horror: [...] }
+//   },
+//   reducers: {
+//     addMovieRow: (state, action) => {
+//       const { key, movies } = action.payload;
+//       state.rows[key] = movies;
+//     },
+//   },
+// });
+
+// export const { addMovieRow } = movieSlice.actions;
+// export default movieSlice.reducer;

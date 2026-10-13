@@ -5,3 +5,5 @@ export const API_OPTIONS = {
     Authorization: `Bearer GTskHTS2lzJFkHdJz4AW5a3eXmkLcgFc5UAFmcN5`,
   },
 };
+
+export const WATCHMODE_BASE = "https://api.watchmode.com/v1";

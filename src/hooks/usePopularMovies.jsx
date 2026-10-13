@@ -13,19 +13,7 @@ const usePopularMovies = () => {
     );
 
     const json = await data.json();
-    // Get full details for every movie
-    // const PopularMovies = await Promise.all(
-    //   json.titles.map(async (movie) => {
-    //     const data = await fetch(
-    //       `https://api.watchmode.com/v1/title/${movie.id}/details`,
-    //       API_OPTIONS,
-    //     );
-
-    //     return await data.json();
-    //   }),
-    // );
-
-    // console.log(json.titles);
+    console.log(json.titles);
     dispatch(addPopularMovies(json.titles));
   };
 
