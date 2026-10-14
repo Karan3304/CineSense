@@ -9,6 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { Bckg_Img } from "../utils/constants";
 
 const Login = () => {
   const [SignInForm, setSignInForm] = useState(true);
@@ -89,10 +90,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/ab1fe332-993a-44d1-b60b-cd4f8d11b96e/web/IN-en-20260928-TRIFECTA-perspective_85aef51c-94d6-41ea-a1ea-1e77199158f1_large.jpg"
-          alt="backroundIMG"
-        />
+        <img src={Bckg_Img} alt="backroundIMG" />
       </div>
 
       <form

@@ -8,7 +8,7 @@ const MovieCard = ({ poster, title, rating, year }) => {
         src={poster}
         alt={title}
       />
-      <div className="absolute inset-x-0 bottom-0 p-2 rounded-b-md bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute inset-x-0 bottom-0 p-2 rounded-b-md bg-linear-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
         <p className="text-white text-sm font-semibold truncate">{title}</p>
         <p className="text-xs text-gray-300">
           {rating ? `★ ${rating}` : ""} {year ? `· ${year}` : ""}

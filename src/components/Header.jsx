@@ -5,11 +5,15 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleAiSearchView } from "../utils/AiMovieSlice";
+import { Supported_languages } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showAiSearch = useSelector((store) => store.AiSearch.showAiSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -36,6 +40,16 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleAiSearchClick = () => {
+    // Toggle GPT search
+    dispatch(toggleAiSearchView());
+  };
+
+  const handleLangChange = (e) => {
+    // change the language
+    dispatch(changeLanguage(e.target.value));
+  };
+
   const name = user?.displayName || user?.email || "User";
 
   return (
@@ -44,7 +58,31 @@ const Header = () => {
 
       {user && (
         <div className="flex items-center gap-4">
+          {/* language support dropdown */}
+          {showAiSearch && (
+            <select
+              className="p-2 m-2 bg-gray-900 text-white"
+              onChange={handleLangChange}
+            >
+              {Supported_languages.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+
+          {/* Gpt search functionality */}
+
+          <button
+            className="py-2 px-4 mx-4 bg-purple-600 text-white font-bold rounded-2xl cursor-pointer"
+            onClick={handleAiSearchClick}
+          >
+            {showAiSearch ? "HomePage" : "AI Search"}
+          </button>
+
           {/* Welcome pill */}
+
           <div className="flex items-center gap-3 pl-2 pr-5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg shadow-black/40">
             <div className="w-11 h-11 rounded-full bg-linear-to-br from-red-600 to-orange-500 flex items-center justify-center text-white text-lg font-extrabold uppercase ring-2 ring-red-500/80 ring-offset-2 ring-offset-black/60">
               {name.charAt(0)}
@@ -60,6 +98,7 @@ const Header = () => {
           </div>
 
           {/* Sign Out button */}
+
           <button
             onClick={handleSignOut}
             className="text-white font-bold text-sm bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 hover:border-white/50 active:scale-95 px-5 py-2 rounded-full shadow-lg shadow-black/40 transition duration-200 cursor-pointer"
