@@ -66,7 +66,7 @@ const AISearchBar = () => {
         return;
       }
 
-      console.log(moviesInfo); // har movie ka ek object
+      // console.log(moviesInfo); // har movie ka ek object
       dispatch(
         addAiMovieResult({
           movieNames: AiMoviesList,
