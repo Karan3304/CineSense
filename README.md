@@ -81,7 +81,7 @@ Add screenshots from your own running application to make the repository easier 
 <!-- Suggested files: screenshots/home.png, screenshots/login.png, screenshots/ai-search.png -->
 | Movie discovery | Authentication | AI movie search |
 |---|---|---|
-| ![Movie discovery screenshot](screenshots/home.png) | ![Authentication screenshot](screenshots/login.png) | ![AI search screenshot](screenshots/ai-search.png) |
+| ![Movie discovery screenshot](screenshots/homepage.png) | ![Authentication screenshot](screenshots/authentication.png) | ![AI search screenshot](screenshots/AIsearch.png) |
 
 > If you have not added screenshots yet, upload them to `screenshots/` or replace this section with a short demo GIF. GitHub will show broken image placeholders until the referenced files exist.
 
