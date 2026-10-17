@@ -14,7 +14,7 @@ const AIMovieSuggestions = () => {
   }));
 
   return (
-    <div className="p-4 m-4 text-white bg-black/60">
+    <div className="p-2 sm:p-4 m-2 sm:m-4 text-white bg-black/60">
       <MovieList title="AI Suggestions for you" movies={movies} />
     </div>
   );

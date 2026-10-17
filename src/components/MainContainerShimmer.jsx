@@ -25,34 +25,36 @@ const shimmerCSS = `
 
 const MainContainerShimmer = () => {
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
+    <div className="relative w-full h-[85vh] md:h-[90vh] bg-black overflow-hidden">
       <style>{shimmerCSS}</style>
 
       {/* Blurred backdrop */}
       <div className="absolute inset-0 shimmer opacity-30" />
 
-      {/* Center poster */}
-      <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-[30%] shimmer !bg-neutral-800" />
+      {/* Center poster: same 2:3 proportion as the real poster */}
+      <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 h-full aspect-2/3 max-w-full shimmer bg-neutral-800!" />
 
-      {/* Dark gradient so the left side stays readable */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+      {/* Gradient */}
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent xl:bg-linear-to-r xl:from-black xl:via-black/70 xl:to-transparent" />
 
-      {/* Left content */}
-      <div className="absolute z-10 left-6 md:left-24 top-[28%] w-[85%] md:w-[28%]">
-        {/* Title */}
-        <div className="shimmer h-12 w-4/5 rounded-md mb-6" />
+      {/* Text area: bottom on small screens, left on desktop */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end pb-6 sm:pb-10 xl:block xl:pb-0 xl:pt-[15%] px-5 sm:px-10 md:px-16 xl:px-36">
+        <div className="w-full sm:w-3/4 md:w-3/5 xl:w-1/4">
+          {/* Title */}
+          <div className="shimmer h-9 sm:h-11 md:h-14 2xl:h-16 w-4/5 rounded-md mb-4 sm:mb-6" />
 
-        {/* Overview: 3 lines */}
-        <div className="space-y-3 mb-8">
-          <div className="shimmer h-4 w-full rounded" />
-          <div className="shimmer h-4 w-11/12 rounded" />
-          <div className="shimmer h-4 w-2/3 rounded" />
-        </div>
+          {/* Overview: 3 lines */}
+          <div className="space-y-2 sm:space-y-3 mb-5 sm:mb-8">
+            <div className="shimmer h-3 sm:h-4 w-full rounded" />
+            <div className="shimmer h-3 sm:h-4 w-11/12 rounded" />
+            <div className="shimmer h-3 sm:h-4 w-2/3 rounded" />
+          </div>
 
-        {/* Buttons */}
-        <div className="flex gap-3">
-          <div className="shimmer h-[54px] w-[134px] rounded-md" />
-          <div className="shimmer h-[54px] w-[157px] rounded-md" />
+          {/* Buttons */}
+          <div className="flex gap-2 sm:gap-3">
+            <div className="shimmer h-11 sm:h-13.5 w-24 sm:w-33.5 rounded-md" />
+            <div className="shimmer h-11 sm:h-13.5 w-28 sm:w-39.25 rounded-md" />
+          </div>
         </div>
       </div>
     </div>

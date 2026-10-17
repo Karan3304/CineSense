@@ -2,14 +2,14 @@ const AIShimmer = ({ count = 5 }) => {
   return (
     <div className="relative w-fit max-w-[90%] mx-auto mt-6 p-4 bg-black rounded-lg">
       {/* title ki jagah */}
-      <div className="h-7 w-48 bg-gray-700 rounded animate-pulse mb-4 mx-2" />
+      <div className="h-6 sm:h-7 w-36 sm:w-48 bg-gray-700 rounded animate-pulse mb-4 mx-2" />
 
       {/* shimmer cards */}
       <div className="flex gap-3 px-2 overflow-hidden">
         {[...Array(count)].map((_, i) => (
           <div
             key={i}
-            className="w-40 h-60 bg-gray-700 rounded animate-pulse shrink-0"
+            className="w-28 h-40 sm:w-36 sm:h-52 md:w-40 md:h-60 xl:w-44 xl:h-64 bg-gray-700 rounded animate-pulse shrink-0"
           />
         ))}
       </div>

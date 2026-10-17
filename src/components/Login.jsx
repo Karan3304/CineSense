@@ -89,15 +89,19 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute">
-        <img src={Bckg_Img} alt="backroundIMG" />
+      <div className="fixed inset-0">
+        <img
+          src={Bckg_Img}
+          alt="backroundIMG"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-3/12 absolute p-12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-black/80"
+        className="w-11/12 sm:w-3/4 md:w-1/2 lg:w-5/12 xl:w-4/12 2xl:w-3/12 max-w-lg min-[2560px]:max-w-2xl absolute p-6 sm:p-10 xl:p-12 my-28 sm:my-32 md:my-36 mx-auto right-0 left-0 text-white rounded-lg bg-black/80"
       >
-        <h1 className="font-bold text-3xl py-4">
+        <h1 className="font-bold text-2xl sm:text-3xl py-2 sm:py-4">
           {SignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!SignInForm && (
@@ -105,29 +109,34 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Name"
-            className="p-4 my-4 w-full bg-gray-700"
+            className="p-3 sm:p-4 my-3 sm:my-4 w-full bg-gray-700"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Address"
-          className="p-4 my-4 w-full bg-gray-700"
+          className="p-3 sm:p-4 my-3 sm:my-4 w-full bg-gray-700"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4 my-4  w-full bg-gray-700"
+          className="p-3 sm:p-4 my-3 sm:my-4 w-full bg-gray-700"
         />
-        <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
+        <p className="text-red-500 font-bold text-base sm:text-lg py-2">
+          {errorMessage}
+        </p>
         <button
-          className="p-4 my-6 bg-red-700 w-full rounded-lg"
+          className="p-3 sm:p-4 my-4 sm:my-6 bg-red-700 w-full rounded-lg"
           onClick={handleButtonClick}
         >
           {SignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
+        <p
+          className="py-2 sm:py-4 text-sm sm:text-base cursor-pointer"
+          onClick={toggleSignInForm}
+        >
           {SignInForm
             ? "New to CineSense? Sign Up "
             : "Already Registered? Sign In "}

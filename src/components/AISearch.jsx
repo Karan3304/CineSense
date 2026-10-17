@@ -13,15 +13,19 @@ const AISearch = () => {
   }, [dispatch]);
 
   return (
-    // BACKGROUND IMAGE
-    <div>
-      <div className="absolute -z-10">
-        <img src={Bckg_Img} alt="backgroundIMG" />
+    <>
+      <div className="fixed inset-0 -z-10">
+        <img
+          src={Bckg_Img}
+          alt="backgroundIMG"
+          className="w-full h-full object-cover"
+        />
       </div>
-
-      <AISearchBar />
-      <AIMovieSuggestions />
-    </div>
+      <div className="">
+        <AISearchBar />
+        <AIMovieSuggestions />
+      </div>
+    </>
   );
 };
 

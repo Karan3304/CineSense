@@ -52,7 +52,7 @@ const AISearchBar = () => {
         setError("Error while fetching movies");
         return;
       }
-      console.log(AiMoviesList);
+      // console.log(AiMoviesList);
 
       // 2. Watchmode se har movie ka ek result
       const moviesInfo = (
@@ -82,21 +82,21 @@ const AISearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex flex-col items-center">
+    <div className="pt-48 sm:pt-52 md:pt-36 lg:pt-40 2xl:pt-52 px-3 sm:px-4 flex flex-col items-center">
       <form
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full sm:w-4/5 md:w-3/5 lg:w-1/2 2xl:w-5/12 bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
-          className="p-4 m-4 bg-white col-span-9 text-bold text-xl"
+          className="p-2 sm:p-4 m-2 sm:m-4 bg-white col-span-8 sm:col-span-9 text-bold text-base sm:text-xl min-w-0"
           placeholder={lang[langKey].AiSearchPlaceholder}
         />
         <button
           type="button"
           disabled={isLoading}
-          className="py-2 px-4 m-4 bg-red-700 text-white rounded-lg col-span-3 text-bold text-xl disabled:opacity-60"
+          className="py-2 px-2 sm:px-4 m-2 sm:m-4 bg-red-700 text-white rounded-lg col-span-4 sm:col-span-3 text-bold text-base sm:text-xl disabled:opacity-60"
           onClick={handleGeminiSearchClick}
         >
           {lang[langKey].search}
@@ -106,7 +106,7 @@ const AISearchBar = () => {
       {isLoading && <AIShimmer />}
 
       {error && (
-        <div className="mt-6 px-6 py-4 text-center text-white text-3xl font-bold bg-purple-700 rounded-lg">
+        <div className="mt-6 px-4 sm:px-6 py-3 sm:py-4 text-center text-white text-xl sm:text-2xl md:text-3xl font-bold bg-purple-700 rounded-lg">
           {error}
         </div>
       )}
