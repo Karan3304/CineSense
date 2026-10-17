@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS } from "../utils/constants";
+import { WATCHMODE_BASE, WATCHMODE_API_KEY } from "../utils/constants";
 import { addMainMovieDetails } from "../utils/movieSlice";
 
 const useMovieDetails = (movieId) => {
@@ -8,21 +8,16 @@ const useMovieDetails = (movieId) => {
   const details = useSelector((store) => store.movies?.mainMovieDetails);
 
   useEffect(() => {
-    // id nahi hai, ya ye movie ki details pehle se store mein hain, to call mat karo
+    // no id, or these details are already in the store: don't call
     if (!movieId || details?.id === movieId) return;
 
     const getDetails = async () => {
       try {
         const res = await fetch(
-          `https://api.watchmode.com/v1/title/${movieId}/details`,
-          API_OPTIONS,
+          `${WATCHMODE_BASE}/title/${movieId}/details/?apiKey=${WATCHMODE_API_KEY}`
         );
-        if (!res.ok) {
-          // console.error("Details error:", res.status);
-          return;
-        }
+        if (!res.ok) return;
         const json = await res.json();
-        // console.log("details:", json);
         dispatch(addMainMovieDetails(json));
       } catch (err) {
         // console.error(err);
@@ -30,7 +25,7 @@ const useMovieDetails = (movieId) => {
     };
 
     getDetails();
-  }, [movieId]);
+  }, [movieId, details?.id, dispatch]);
 };
 
 export default useMovieDetails;

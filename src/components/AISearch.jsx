@@ -1,13 +1,22 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Bckg_Img } from "../utils/constants";
+import { clearAiMovieResult } from "../utils/AiMovieSlice"; // adjust path to your slice file
 import AIMovieSuggestions from "./AIMovieSuggestions";
 import AISearchBar from "./AISearchBar";
 
 const AISearch = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearAiMovieResult());
+  }, [dispatch]);
+
   return (
-    // BACKGROUND iMAGE
+    // BACKGROUND IMAGE
     <div>
       <div className="absolute -z-10">
-        <img src={Bckg_Img} alt="backroundIMG" />
+        <img src={Bckg_Img} alt="backgroundIMG" />
       </div>
 
       <AISearchBar />

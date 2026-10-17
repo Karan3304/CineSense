@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-
-// Module-level cache: one request per page load, shared by every component
-let cache = null;
-let pending = null;
+import { useDispatch, useSelector } from "react-redux";
+import { addTVShows } from "../utils/movieSlice";
 
 const mapShow = (s) => ({
   id: s.id,
@@ -17,35 +15,29 @@ const mapShow = (s) => ({
   url: s.officialSite || s.url,
 });
 
-const fetchShows = () => {
-  if (cache) return Promise.resolve(cache);
-  if (!pending) {
-    pending = fetch("https://api.tvmaze.com/shows?page=0")
-      .then((r) => {
-        if (!r.ok) throw new Error(`TVMaze error: ${r.status}`);
-        return r.json();
-      })
-      .then((data) => {
-        cache = data.filter((s) => s.image?.medium).map(mapShow);
-        return cache;
-      })
-      .finally(() => {
-        pending = null;
-      });
-  }
-  return pending;
-};
-
 const useTVMazeShows = () => {
-  const [shows, setShows] = useState(cache || []);
+  const dispatch = useDispatch();
+  const shows = useSelector((store) => store.movies.tvShows);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (cache) return;
-    fetchShows().then(setShows).catch((e) => setError(e.message));
-  }, []);
+    if (shows) return;
 
-  return { shows, error };
+    const getShows = async () => {
+      try {
+        const res = await fetch("https://api.tvmaze.com/shows?page=0");
+        if (!res.ok) throw new Error(`TVMaze error: ${res.status}`);
+        const data = await res.json();
+        dispatch(addTVShows(data.filter((s) => s.image?.medium).map(mapShow)));
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+
+    getShows();
+  }, [shows, dispatch]);
+
+  return { shows: shows || [], error };
 };
 
 export default useTVMazeShows;

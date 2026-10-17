@@ -5,6 +5,7 @@ const movieSlice = createSlice({
   initialState: {
     popularMovies: null,
     mainMovieDetails: null,
+    tvShows: null,
   },
   reducers: {
     addPopularMovies: (state, action) => {
@@ -13,28 +14,13 @@ const movieSlice = createSlice({
     addMainMovieDetails: (state, action) => {
       state.mainMovieDetails = action.payload;
     },
+    addTVShows: (state, action) => {
+      state.tvShows = action.payload;
+    },
   },
 });
 
-export const { addPopularMovies, addMainMovieDetails } = movieSlice.actions;
+export const { addPopularMovies, addMainMovieDetails, addTVShows } =
+  movieSlice.actions;
 
 export default movieSlice.reducer;
-
-
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const movieSlice = createSlice({
-//   name: "movies",
-//   initialState: {
-//     rows: {}, // { newReleases: [...], popular: [...], horror: [...] }
-//   },
-//   reducers: {
-//     addMovieRow: (state, action) => {
-//       const { key, movies } = action.payload;
-//       state.rows[key] = movies;
-//     },
-//   },
-// });
-
-// export const { addMovieRow } = movieSlice.actions;
-// export default movieSlice.reducer;
